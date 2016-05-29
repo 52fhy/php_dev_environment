@@ -11,14 +11,14 @@ rewrite规则写法及nginx配置location总结 - 飞鸿影~ - 博客园
 http://www.cnblogs.com/52fhy/p/5055233.html
 
 ## ThinkPHP框架里隐藏index.php
-### Nginx
+**Nginx**
 ```
 location / {
    try_files $uri $uri/ /index.php?s=$uri&$args;
 }
 ```
 
-### Apache
+**Apache**
 在根目录新建.htaccess文件：
 ```
 <IfModule mod_rewrite.c>
@@ -38,7 +38,7 @@ http://www.cnblogs.com/52fhy/p/5380185.html
 
 ## ci框架里rewrite示例
 
-### Nginx
+**Nginx**
 ```
 app.52fhy.com.conf
 
@@ -77,7 +77,7 @@ server {
 }
 ```
 
-## Apache
+**Apache**
 ```
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
@@ -95,7 +95,7 @@ ci框架里rewrite示例 - 飞鸿影~ - 博客园
 http://www.cnblogs.com/52fhy/p/5061314.html
 
 ## Nginx下WordPress的Rewrite
-### Nginx
+**Nginx**
 ```
 location / {
 	index index.html index.php;
@@ -108,7 +108,7 @@ location / {
 }
 ```
 
-### Apache
+**Apache**
 .htaccess的内容如下：
 
 ```
