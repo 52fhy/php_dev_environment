@@ -124,7 +124,7 @@ http://baike.baidu.com/view/32614.htm
 http://blog.yation.com/network/fastcgi/
 
 
-**内容来源：**
+**阅读原文：**
 <br/>
 简单.生活 » Blog Archive » 什么是CGI、FastCGI、PHP-CGI、PHP-FPM、Spawn-FCGI？
 http://www.mike.org.cn/articles/what-is-cgi-fastcgi-php-fpm-spawn-fcgi/
