@@ -63,8 +63,7 @@ early-plugin-load=""
 skip-grant-tables
 ```
 
->early-plugin-load=""
-skip-grant-tables数据库启动的时候 跳跃权限表的限制，不用验证密码，直接登录
+>skip-grant-tables数据库启动的时候 跳跃权限表的限制，不用验证密码，直接登录
 
 然后初始化数据库：
 ```
