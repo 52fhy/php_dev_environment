@@ -269,3 +269,6 @@ exit
 双击`start_nginx.bat`看看进程管理器是不是有两个`nginx.exe`的进程和一个`php-cgi.exe`的进程呢？
 
 这样nginx服务就启动了，而且php也以fastCGI的方式运行了。
+
+本文发表在博客园，有删改。原文请看：
+http://www.cnblogs.com/52fhy/p/5011398.html
