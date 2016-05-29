@@ -36,8 +36,11 @@ http://windows.php.net/download
 
 电脑需要VC运行环境：
 VC9 x86 ：http://www.microsoft.com/en-us/download/details.aspx?id=5582
+<br/>
 VC9 x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=15336
+<br/>
 VC11 x86 or x64：http://www.microsoft.com/en-us/download/details.aspx?id=30679
+<br/>
 VC14 x86 or x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=48145
 
 ### 配置PHP
