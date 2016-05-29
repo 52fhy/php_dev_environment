@@ -12,7 +12,6 @@
 ```
 D:/phpsetup/
    |——php
-   		|——php-5.6.22-Win32-VC11-x86
    		|——php-5.6.22-nts-Win32-VC11-x86
    |——nginx
    |——mysql
@@ -26,7 +25,14 @@ http://php.net/
 windows版下载地址：
 http://windows.php.net/download
 
-选择nts(Non Thread Safe)版本。根据操作系统选择x64或者x86。
+官网里Windows的版本有很多。选择哪个版本呢？
+
+如果你的PHP应用程序以FastCGI方式运行，请选择Non-Thread Safe (NTS) 版本；
+如果你的PHP应用程序和Apache一起，请选择 Thread Safe (TS) 版本。
+
+**本文用的nginx+php组合，所以选择nts(Non Thread Safe)版本。根据操作系统选择x64或者x86。**
+
+大多数版本的PHP使用VC9, VC11 or VC14 (Visual Studio 2008, 2012 or 2015分别编译)进行编译的，所以你电脑上需要安装VC运行环境。
 
 电脑需要VC运行环境：
 VC9 x86 ：http://www.microsoft.com/en-us/download/details.aspx?id=5582
@@ -62,7 +68,7 @@ extension_dir = "ext"
 ```
 cgi.fix_pathinfo=1
 ```
-这一步非常重要，这里是php的CGI的设置。
+**这一步非常重要，这里是php的CGI的设置。**
 
 
 - 开启扩展
@@ -126,7 +132,7 @@ extension=php_redis.dll
 ```
 
 注意，需要下载对应版本的扩展：
-如`php_redis-2.2.7-5.6-ts-vc11-x86`
+如`php_redis-2.2.7-5.6-nts-vc11-x86`
 区分ts,x86。
 
 下载地址
