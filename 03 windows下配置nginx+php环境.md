@@ -9,7 +9,7 @@
 
 约定：
 环境安装目录：
-```
+``` ini
 D:/phpsetup/
    |——php
    		|——php-5.6.22-nts-Win32-VC11-x86
@@ -35,9 +35,13 @@ http://windows.php.net/download
 大多数版本的PHP使用VC9, VC11 or VC14 (Visual Studio 2008, 2012 or 2015分别编译)进行编译的，所以你电脑上需要安装VC运行环境。
 
 电脑需要VC运行环境：
+<br/>
 VC9 x86 ：http://www.microsoft.com/en-us/download/details.aspx?id=5582
+<br/>
 VC9 x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=15336
+<br/>
 VC11 x86 or x64：http://www.microsoft.com/en-us/download/details.aspx?id=30679
+<br/>
 VC14 x86 or x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=48145
 
 ### 配置PHP
@@ -50,22 +54,22 @@ VC14 x86 or x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=48145
 
 - 更改自定义扩展目录。
 找到
-```
+``` ini
 ;extension_dir = "ext"
 ```
 更改为
-```
+``` ini
 extension_dir = "ext"
 ```
 提示：与nginx搭配使用不需要写绝对位置。
 
 - 让php能够与nginx结合。
 找到
-```
+``` ini
 ;cgi.fix_pathinfo=1
 ```
 我们去掉这里的分号:
-```
+``` ini
 cgi.fix_pathinfo=1
 ```
 **这一步非常重要，这里是php的CGI的设置。**
@@ -73,12 +77,12 @@ cgi.fix_pathinfo=1
 
 - 开启扩展
 往下看，再找到：
-```
+``` ini
 ;extension=php_curl.dll
 ```
 
 去掉部分注释：
-```
+``` ini
 extension=php_bz2.dll
 extension=php_curl.dll
 extension=php_fileinfo.dll
@@ -118,12 +122,12 @@ extension=php_xsl.dll
 ```
 
 - 设置默认时区
-```
+``` ini
 date.timezone=PRC
 ```
 
 - 开启自定义扩展
-```
+``` ini
 [memcache]
 extension=php_memcache.dll
 
@@ -151,7 +155,7 @@ http://nginx.org/download/nginx-1.10.0.zip
 接下来，我们来配置nginx，让它能够和php协同工作。
 
 进入nginx的conf目录，打开nginx的配置文件nginx.conf，找到：
-```
+``` ini
 location / { 
 	root html;　#这里是站点的根目录 
 	index index.html index.htm;
@@ -159,7 +163,7 @@ location / {
 ```
 
 修改www目录及index：
-```
+``` ini
 location / { 
 	root D:/phpsetup/www;　　　　#这里是站点的根目录 
 	index index.php index.html index.htm;
@@ -181,7 +185,7 @@ location / {
 新建localhost.conf：
 内容：
 
-```
+``` ini
 server {
     listen       80;
     server_name  localhost;
@@ -218,7 +222,7 @@ server {
 
 ### 运行nginx+php
 nginx+php的环境就初步配置好了，来跑跑看。我们可以输入命令：
-```
+``` ini
 php-cgi.exe -b 127.0.0.1:9000 -c D:/phpsetup/php/php-5.6.22-nts-Win32-VC11-x86/php.ini
 ```
 
