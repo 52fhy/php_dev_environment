@@ -1,5 +1,5 @@
 
-## 什么是CGI、FastCGI、PHP-CGI、PHP-FPM、Spawn-FCGI？
+# 什么是CGI、FastCGI、PHP-CGI、PHP-FPM、Spawn-FCGI？
 
 ---
 
@@ -14,7 +14,7 @@ FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。众所周知，CGI解释器的反复加载是CGI性能低下的主要原因，如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，则可以提供良好的性能、伸缩性、Fail- Over特性等等。
 
 ## FastCGI与CGI特点
-1、如CGI，FastCGI也具有语言无关性.
+1、如CGI，FastCGI也具有语言无关性
 2、如CGI, FastCGI在进程中的应用程序，独立于核心web服务器运行,提供了一个比API更安全的环境。(APIs把应用程序的代码与核心的web服务器链接在一起，这意味着在一个错误的API的应用程序可能会损坏其他应用程序或核心服务器; 恶意的API的应用程序代码甚至可以窃取另一个应用程序或核心服务器的密钥。)
 3、FastCGI技术目前支持语言有：C/C++、Java、Perl、Tcl、Python、SmallTalk、Ruby等。相关模块在Apache, ISS, Lighttpd等流行的服务器上也是可用的。
 4、如CGI，FastCGI的不依赖于任何Web服务器的内部架构，因此即使服务器技术的变化, FastCGI依然稳定不变。
