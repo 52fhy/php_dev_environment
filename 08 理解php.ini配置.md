@@ -1299,3 +1299,4 @@ pgsql.log_notice = Off
 ; 是否在日志中记录PostgreSQL后端的提醒消息。
 ; 仅在pgsql.ignore_notice=Off时，才可以记录。
 ```
+

@@ -12,7 +12,7 @@ http://www.cnblogs.com/52fhy/p/5055233.html
 
 ## ThinkPHP框架里隐藏index.php
 **Nginx**
-```
+``` conf
 location / {
    try_files $uri $uri/ /index.php?s=$uri&$args;
 }
@@ -20,7 +20,7 @@ location / {
 
 **Apache**
 在根目录新建.htaccess文件：
-```
+``` conf
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
   RewriteEngine On
@@ -39,7 +39,7 @@ http://www.cnblogs.com/52fhy/p/5380185.html
 ## ci框架里rewrite示例
 
 **Nginx**
-```
+``` conf
 app.52fhy.com.conf
 
 server {
@@ -78,7 +78,7 @@ server {
 ```
 
 **Apache**
-```
+``` conf
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
   RewriteEngine On
@@ -96,7 +96,7 @@ http://www.cnblogs.com/52fhy/p/5061314.html
 
 ## Nginx下WordPress的Rewrite
 **Nginx**
-```
+``` conf
 location / {
 	index index.html index.php;
 	if (-f $request_filename) {
@@ -111,7 +111,7 @@ location / {
 **Apache**
 .htaccess的内容如下：
 
-```
+``` conf
 # BEGIN WordPress
 RewriteEngine On
 RewriteBase /
@@ -127,7 +127,7 @@ Nginx下WordPress的Rewrite - 飞鸿影~ - 博客园
 http://www.cnblogs.com/52fhy/p/5054507.html
 
 ## php-fpm进程数优化
-```
+``` conf
 pm = dynamic #如何控制子进程，选项有static和dynamic
 pm.start_servers = 4 #动态方式下的起始php-fpm进程数量
 pm.min_spare_servers = 2 #动态方式下的最小php-fpm进程数
