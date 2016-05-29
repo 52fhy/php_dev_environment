@@ -35,6 +35,7 @@ http://windows.php.net/download
 大多数版本的PHP使用VC9, VC11 or VC14 (Visual Studio 2008, 2012 or 2015分别编译)进行编译的，所以你电脑上需要安装VC运行环境。
 
 电脑需要VC运行环境：
+<br/>
 VC9 x86 ：http://www.microsoft.com/en-us/download/details.aspx?id=5582
 <br/>
 VC9 x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=15336
