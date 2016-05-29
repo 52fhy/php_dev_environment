@@ -15,14 +15,20 @@ FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为�
 
 ## FastCGI与CGI特点
 1、如CGI，FastCGI也具有语言无关性.
+<br/>
 2、如CGI, FastCGI在进程中的应用程序，独立于核心web服务器运行,提供了一个比API更安全的环境。(APIs把应用程序的代码与核心的web服务器链接在一起，这意味着在一个错误的API的应用程序可能会损坏其他应用程序或核心服务器; 恶意的API的应用程序代码甚至可以窃取另一个应用程序或核心服务器的密钥。)
+<br/>
 3、FastCGI技术目前支持语言有：C/C++、Java、Perl、Tcl、Python、SmallTalk、Ruby等。相关模块在Apache, ISS, Lighttpd等流行的服务器上也是可用的。
+<br/>
 4、如CGI，FastCGI的不依赖于任何Web服务器的内部架构，因此即使服务器技术的变化, FastCGI依然稳定不变。
 
 ## FastCGI的工作原理
 1、Web Server启动时载入FastCGI进程管理器（IIS ISAPI或Apache Module)
+<br/>
 2、FastCGI进程管理器自身初始化，启动多个CGI解释器进程(可见多个php-cgi)并等待来自Web Server的连接。
+<br/>
 3、当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。Web server将CGI环境变量和标准输入发送到FastCGI子进程php-cgi。
+<br/>
 4、FastCGI子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当FastCGI子进程关闭连接时，请求便告处理完成。FastCGI子进程接着等待并处理来自FastCGI进程管理器(运行在Web Server中)的下一个连接。 在CGI模式中，php-cgi在此便退出了。
 　　
 在上述情况中，你可以想象CGI通常有多慢。每一个Web请求PHP都必须重新解析php.ini、重新载入全部扩展并重初始化全部数据结构。使用FastCGI，所有这些都只在进程启动时发生一次。一个额外的好处是，持续数据库连接(Persistent database connection)可以工作。
@@ -44,6 +50,7 @@ php-cgi -b 127.0.0.1:9000
 
 ## PHP-CGI的不足
 1、php-cgi变更php.ini配置后需重启php-cgi才能让新的php-ini生效，不可以平滑重启
+<br/>
 2、直接杀死php-cgi进程,php就不能运行了。(PHP-FPM和Spawn-FCGI就没有这个问题,守护进程会平滑从新生成新的子进程。）
 
 ## 什么是PHP-FPM
@@ -60,12 +67,14 @@ PHP5.3.3已经集成php-fpm了，不再是第三方的包了。PHP-FPM提供了�
 /usr/local/php/sbin/php-fpm{start|stop|quit|restart|reload|logrotate}
 ```
 
+```
 --start 启动php的fastcgi进程
 --stop 强制终止php的fastcgi进程
 --quit 平滑终止php的fastcgi进程
 --restart 重启php的fastcgi进程
 --reload 重新平滑加载php的php.ini
 --logrotate 重新启用log文件 
+```
 
 ## 什么是Spawn-FCGI
 Spawn-FCGI是一个通用的FastCGI管理服务器，它是lighttpd中的一部份，很多人都用Lighttpd的Spawn-FCGI进行FastCGI模式下的管理工作，不过有不少缺点。而PHP-FPM的出现多少缓解了一些问题，但PHP-FPM有个缺点就是要重新编译，这对于一些已经运行的环境可能有不小的风险(refer)，在php 5.3.3中可以直接使用PHP-FPM了。
@@ -84,6 +93,7 @@ Spawn-FCGI目前已经独成为一个项目，更加稳定一些，也给很多W
 ```
 
 参数含义如下:
+```
 -f 指定调用FastCGI的进程的执行程序位置，根据系统上所装的PHP的情况具体设置
 -a 绑定到地址addr
 -p 绑定到端口port
@@ -91,6 +101,7 @@ Spawn-FCGI目前已经独成为一个项目，更加稳定一些，也给很多W
 -C 指定产生的FastCGI的进程数，默认为5(仅用于PHP)
 -P 指定产生的进程的PID文件路径
 -u和-g FastCGI使用什么身份(-u 用户 -g 用户组)运行，Ubuntu下可以使用www-data，其他的根据情况配置，如nobody、apache等
+```
 
 ## PHP-FPM与spawn-CGI对比测试
 PHP-FPM的使用非常方便,配置都是在PHP-FPM.ini的文件内，而启动、重启都可以从php/sbin/PHP-FPM中进行。更方便的是修改php.ini后可以直接使用PHP-FPM reload进行加载，无需杀掉进程就可以完成php.ini的修改加载
