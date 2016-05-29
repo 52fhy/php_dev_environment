@@ -56,19 +56,21 @@ mysqld -install
 Service successfully installed.
 ```
 
-如果是全新安装的mysql，
-需要在`my.ini`增加：
+启动mysql
 ```
-early-plugin-load=""
-skip-grant-tables
+net start mysql
 ```
+发现启动失败。之前用的5.6没有问题，然后查了资料：
 
->skip-grant-tables数据库启动的时候 跳跃权限表的限制，不用验证密码，直接登录
+MySQL数据库在升级到5.7版本后，和之前的版本有些不一样，没有data文件夹，导致无法启动mysql。
 
-然后初始化数据库：
+>我们都知道MySQL数据库文件是保存在data文件夹中的，网上有人说把5.6版本的data文件夹拷贝一个，试了确实可以启动服务了，但是无法修改管理员密码，下面还是给个标准的解决方法。
+
+只需输入如下命令回车即可：
 ```
-mysqld initialize
+mysqld --initialize-insecure --user=mysql
 ```
+执行完上面命令后，MySQL会自建一个data文件夹，并且建好默认数据库，登录的用户名为root，密码为空，后面的操作就跟之前版本一样了。
 
 然后启动mysql
 ```
