@@ -71,6 +71,8 @@ $ ./configure --prefix=/www/server/php --with-config-file-scan-dir=/www/server/p
 $ make
 $ make install 
 ```
+
+这里面开启了很多扩展。如果这时候忘了开启，以后还能加上吗？答案是可以的。以后只需要进入源码的ext目录，例如忘了pdo_mysql，进入ext/pdo_mysql，使用phpize工具，像安装普通扩展一样即可生成pdo_mysql.so。
  
 ### 配置文件
 需要从安装包里复制php.ini到安装目录：
@@ -127,8 +129,8 @@ ps aux | grep -c php-fpm
 php-fpm操作汇总：
 ``` shell
 /www/server/php/sbin/php-fpm 		# php-fpm启动
-kill -INT `cat /www/server/php/var/run/php-fpm/php-fpm.pid` 		# php-fpm关闭
-kill -USR2 `cat /www/server/php/var/run/php-fpm/php-fpm.pid` 		#php-fpm重启
+kill -INT `cat /www/server/php/var/run/php-fpm.pid` 		# php-fpm关闭
+kill -USR2 `cat /www/server/php/var/run/php-fpm.pid` 		#php-fpm重启
 ```
 
 重启方法二：
@@ -291,4 +293,107 @@ chkconfig nginx on
 service apache off
 ```
 禁止apache启动并关闭apache服务。
+
+## 安装扩展
+
+### 安装swoole
+Swoole: PHP的异步、并行、高性能网络通信引擎
+http://www.swoole.com/
+
+``` shell
+wget https://github.com/swoole/swoole-src/archive/swoole-1.8.5-stable.zip
+unzip swoole-1.8.5-stable.zip
+cd swoole-1.8.5-stable
+phpize
+./configure
+make && make install
+```
+
+### 安装redis
+服务器端：
+http://download.redis.io/releases/redis-3.2.0.tar.gz
+```
+$ wget http://download.redis.io/releases/redis-3.2.0.tar.gz
+$ tar xzf redis-3.2.0.tar.gz
+$ cd redis-3.2.0
+$ make
+```
+默认编译完后在当前目录的src目录下。可以复制可执行文件到其他地方：
+```
+mkdir /www/server/redis
+cd src
+cp  redis-benchmark redis-check-aof redis-check-rdb redis-cli redis-sentinel redis-server redis-trib.rb /www/server/redis
+```
+
+复制配置文件
+```
+$ cd redis-3.2.0
+$ cp redis.conf /www/server/redis/
+```
+
+或者安装的时候指定位置：
+```
+make PREFIX=/www/server/redis install
+```
+
+**将Redis的命令所在目录添加到系统参数PATH中:**
+修改profile文件：
+```
+vi /etc/profile
+```
+在最后行追加: 
+```
+export PATH="$PATH:/www/server/redis/bin"
+```
+然后马上应用这个文件： 
+```
+. /etc/profile  
+```
+这样就可以直接调用redis-cli的命令了
+
+客户端：
+#### 2.0安装
+```
+wget https://github.com/nicolasff/phpredis/archive/2.2.4.tar.gz
+tar -zxvf 2.2.4
+cd phpredis-2.2.4/
+phpize
+./configure 
+make && make install
+```
+
+#### 3.0安装
+phpredis/phpredis: A PHP extension for Redis
+https://github.com/phpredis/phpredis
+
+需要先安装igbinary：
+
+PECL :: Package :: igbinary
+http://pecl.php.net/package/igbinary
+
+```
+wget http://pecl.php.net/get/igbinary-1.2.1.tgz
+tar zxvf igbinary-1.2.1.tgz
+cd igbinary-1.2.1
+phpize
+./configure 
+make && make install
+```
+
+```
+wget https://github.com/phpredis/phpredis/archive/3.0.0-rc1.zip
+unzip 3.0.0-rc1
+cd phpredis-3.0.0-rc1/
+
+phpize
+./configure [--enable-redis-igbinary]
+make && make install
+```
+
+### 安装memcache
+
+
+## 更多资料
+1、linux下为已经编译好的php环境添加mysql扩展
+https://ask.hellobi.com/blog/liangyong/69
  
