@@ -68,6 +68,8 @@ cd libmcrypt-2.5.7
 make && make install
 ```
 
+如果php编译还是提示mcrypt.so出错，重新安装libmcrypt，将`--prefix`改为`--prefix=/usr/local/`试试。
+
 ### 开始安装
 ``` shell
 wget http://cn2.php.net/distributions/php-7.0.7.tar.bz2
