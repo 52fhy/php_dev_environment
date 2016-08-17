@@ -45,6 +45,7 @@ yum makecache
 
 ### 安装依赖
 ``` shell
+yum install -y wget lrzsz
 yum install -y gcc gcc-c++ make cmake bison autoconf wget
 yum install -y libtool libtool-ltdl-devel 
 yum install -y freetype-devel libjpeg.x86_64 libjpeg-devel libpng-devel gd-devel
@@ -61,7 +62,10 @@ yum install -y readline-devel
 libmcrypt库
 ``` shell
 wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz
-./configure --piefix=/usr/local/libmcrypt   make && make install
+tar zxvf libmcrypt-2.5.7.tar.gz 
+cd libmcrypt-2.5.7
+./configure --prefix=/usr/local/libmcrypt
+make && make install
 ```
 
 ### 开始安装
