@@ -173,14 +173,29 @@ http://nginx.org/download/nginx-1.11.1.tar.gz
 
 依赖：
 ``` shell
+
+# 为了支持rewrite功能，我们需要安装pcre
 yum install pcre-devel
+
+# 需要ssl的支持，如果不需要ssl支持，请跳过这一步
+# yum install openssl*
+
+# gzip 类库安装
+yum install zlib zlib-devel
 ```
 
 配置编译参数
 ``` shell
 $ tar -zxvf nginx-1.11.1.tar.gz
 $ cd nginx-1.11.1
-$ ./configure --prefix=/www/server/nginx --with-http_realip_module --with-http_sub_module --with-http_gzip_static_module --with-http_stub_status_module  --with-pcre
+$ ./configure \
+	--prefix=/www/server/nginx \
+	--with-http_stub_status_module  \
+	--with-http_ssl_module \
+	--with-http_realip_module \
+	--with-http_sub_module \
+	--with-http_gzip_static_module \
+	--with-pcre
 ```
 
 编译安装nginx
