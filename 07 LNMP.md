@@ -35,6 +35,9 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 
 ## CentOS 6
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+
+## CentOS 7
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 ```
 
 3、生成缓存
@@ -88,7 +91,7 @@ $ make
 $ make install 
 ```
 
-这里面开启了很多扩展。如果这时候忘了开启，以后还能加上吗？答案是可以的。以后只需要进入源码的ext目录，例如忘了pdo_mysql，进入ext/pdo_mysql，使用phpize工具，像安装普通扩展一样即可生成pdo_mysql.so。
+这里面开启了很多扩展。如果这时候忘了开启，以后还能加上吗？答案是可以的。以后只需要进入源码的`ext`目录，例如忘了`pdo_mysql`，进入`ext/pdo_mysql`，使用phpize工具，像安装普通扩展一样即可生成pdo_mysql.so。
  
 ### 配置文件
 需要从安装包里复制php.ini到安装目录：
