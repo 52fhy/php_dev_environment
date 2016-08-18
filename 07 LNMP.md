@@ -324,6 +324,14 @@ nginx
 nginx -s reload
 ```
 
+停止：
+``` shell
+/www/server/nginx/sbin/nginx -s stop
+
+# 或者
+nginx -s stop
+```
+
 如果提示80端口被占用了，可以使用`ps aunx | grep 80`查看。一般是apache占用了。可以使用：
 ``` shell
 chkconfig --list
