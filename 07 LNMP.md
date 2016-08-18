@@ -165,6 +165,10 @@ kill -9  1210  #1210指php-fpm进程id
 ```
 
 ## 安装Nginx
+
+nginx news
+http://nginx.org/
+
 http://nginx.org/download/nginx-1.11.1.tar.gz
 
 依赖：
