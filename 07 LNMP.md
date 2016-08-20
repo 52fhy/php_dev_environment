@@ -66,11 +66,9 @@ libmcrypt库
 wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz
 tar zxvf libmcrypt-2.5.7.tar.gz 
 cd libmcrypt-2.5.7
-./configure --prefix=/usr/local/libmcrypt
+./configure --prefix=/usr/local/
 make && make install
 ```
-
-如果php编译还是提示mcrypt.so出错，重新安装libmcrypt，将`--prefix`改为`--prefix=/usr/local/`试试。
 
 ### 开始安装
 
