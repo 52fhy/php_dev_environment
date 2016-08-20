@@ -48,8 +48,7 @@ yum makecache
 
 ### 安装依赖
 ``` shell
-yum install -y wget lrzsz
-yum install -y gcc gcc-c++ make cmake bison autoconf wget
+yum install -y gcc gcc-c++ make cmake bison autoconf wget lrzsz
 yum install -y libtool libtool-ltdl-devel 
 yum install -y freetype-devel libjpeg.x86_64 libjpeg-devel libpng-devel gd-devel
 yum install -y libmcrypt-devel libmhash-devel
