@@ -7,7 +7,7 @@
 
 ---
 
-本文以centos6为例。
+本文以centos6.8为例。
 
 ## 安装PHP
 ### 下载
@@ -80,7 +80,7 @@ wget http://cn2.php.net/distributions/php-7.0.7.tar.bz2
 tar jxvf php-7.0.7.tar.bz2 
 cd php-7.0.7
 
-$ ./configure --prefix=/www/server/php --with-config-file-scan-dir=/www/server/php/etc/ --enable-inline-optimization --enable-opcache --enable-session --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-sqlite --with-sqlite3 --with-gettext --enable-mbregex --enable-mbstring --enable-xml --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-xmlrpc --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-curlwrappers --with-zlib --enable-zip --with-bz2 --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-readline
+$ ./configure --prefix=/usr/local/php --with-config-file-scan-dir=/usr/local/php/etc/ --enable-inline-optimization --enable-opcache --enable-session --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-sqlite --with-sqlite3 --with-gettext --enable-mbregex --enable-mbstring --enable-xml --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-xmlrpc --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-curlwrappers --with-zlib --enable-zip --with-bz2 --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-readline
  
 $ make
 $ make install 
@@ -194,8 +194,8 @@ zlib
 ### 配置文件
 需要从安装包里复制php.ini到安装目录：
 ``` shell
-$ cp php-5.6.22/php.ini* /www/server/php/etc/
-$ cd /www/server/php/etc/
+$ cp php-5.6.22/php.ini* /usr/local/php/etc/
+$ cd /usr/local/php/etc/
 $ ls
 ```
 pear.conf  php-fpm.conf.default  php.ini-development  php.ini-production
@@ -209,22 +209,22 @@ $ cp php-fpm.conf.default  php-fpm.conf
 
 保存配置文件后，检验配置是否正确的方法为:
 ``` shell
-/www/server/php/sbin/php-fpm -t
+/usr/local/php/sbin/php-fpm -t
 ```
 如果出现诸如 `test is successful` 字样，说明配置没有问题。
 
 建立软连接：
 ``` shell
-ln -sf /www/server/php/sbin/php-fpm /usr/bin/
-ln -sf /www/server/php/bin/php /usr/bin/
-ln -sf /www/server/php/bin/phpize /usr/bin/
-ln -sf /www/server/php/bin/php-config /usr/bin/
-ln -sf /www/server/php/bin/php-cig /usr/bin/
+ln -sf /usr/local/php/sbin/php-fpm /usr/bin/
+ln -sf /usr/local/php/bin/php /usr/bin/
+ln -sf /usr/local/php/bin/phpize /usr/bin/
+ln -sf /usr/local/php/bin/php-config /usr/bin/
+ln -sf /usr/local/php/bin/php-cig /usr/bin/
 ```
 
 ### 启动php-fpm
 ``` shell
- /www/server/php/sbin/php-fpm 
+ /usr/local/php/sbin/php-fpm 
 ```
 如果提示没有www用户，则新增：
 ``` shell
@@ -245,15 +245,15 @@ ps aux | grep -c php-fpm
 
 php-fpm操作汇总：
 ``` shell
-/www/server/php/sbin/php-fpm 		# php-fpm启动
-kill -INT `cat /www/server/php/var/run/php-fpm.pid` 		# php-fpm关闭
-kill -USR2 `cat /www/server/php/var/run/php-fpm.pid` 		#php-fpm重启
+/usr/local/php/sbin/php-fpm 		# php-fpm启动
+kill -INT `cat /usr/local/php/var/run/php-fpm.pid` 		# php-fpm关闭
+kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpm重启
 ```
 
 重启方法二：
 ``` shell
 killall php-fpm
-/www/server/php/sbin/php-fpm &
+/usr/local/php/sbin/php-fpm &
 ```
 
 如果无法平滑启动，那就终止进程id：
@@ -287,7 +287,7 @@ yum install zlib zlib-devel
 $ tar -zxvf nginx-1.11.1.tar.gz
 $ cd nginx-1.11.1
 $ ./configure \
-	--prefix=/www/server/nginx \
+	--prefix=/usr/local/nginx \
 	--with-http_stub_status_module  \
 	--with-http_ssl_module \
 	--with-http_realip_module \
@@ -304,7 +304,7 @@ make install
 
 设置软连接：
 ``` shell
-ln -sf /www/server/nginx/sbin/nginx /usr/sbin 
+ln -sf /usr/local/nginx/sbin/nginx /usr/sbin 
 ```
 
 检测nginx:
@@ -312,7 +312,7 @@ ln -sf /www/server/nginx/sbin/nginx /usr/sbin
 nginx -t
 ```
 显示：
-nginx: configuration file /www/server/nginx/conf/nginx.conf test is successful
+nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 
 成功了。我们重新配置下nginx.conf：
 
@@ -408,7 +408,7 @@ server {
 
 启动nginx:
 ``` shell
-/www/server/nginx/sbin/nginx
+/usr/local/nginx/sbin/nginx
 
 # 或者
 nginx
@@ -416,7 +416,7 @@ nginx
 
 重启：
 ``` shell
-/www/server/nginx/sbin/nginx -s reload
+/usr/local/nginx/sbin/nginx -s reload
 
 # 或者
 nginx -s reload
@@ -424,7 +424,7 @@ nginx -s reload
 
 停止：
 ``` shell
-/www/server/nginx/sbin/nginx -s stop
+/usr/local/nginx/sbin/nginx -s stop
 
 # 或者
 nginx -s stop
@@ -464,20 +464,20 @@ $ make
 ```
 默认编译完后在当前目录的src目录下。可以复制可执行文件到其他地方：
 ```
-mkdir /www/server/redis
+mkdir /usr/local/redis
 cd src
-cp  redis-benchmark redis-check-aof redis-check-rdb redis-cli redis-sentinel redis-server redis-trib.rb /www/server/redis
+cp  redis-benchmark redis-check-aof redis-check-rdb redis-cli redis-sentinel redis-server redis-trib.rb /usr/local/redis
 ```
 
 复制配置文件
 ```
 $ cd redis-3.2.0
-$ cp redis.conf /www/server/redis/
+$ cp redis.conf /usr/local/redis/
 ```
 
 或者安装的时候指定位置：
 ```
-make PREFIX=/www/server/redis install
+make PREFIX=/usr/local/redis install
 ```
 
 **将Redis的命令所在目录添加到系统参数PATH中:**
@@ -487,7 +487,7 @@ vi /etc/profile
 ```
 在最后行追加: 
 ```
-export PATH="$PATH:/www/server/redis/bin"
+export PATH="$PATH:/usr/local/redis/bin"
 ```
 然后马上应用这个文件： 
 ```
