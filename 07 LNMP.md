@@ -137,6 +137,58 @@ You may want to add: /usr/local/php/lib/php to your php.ini include_path
 /php-7.0.7/build/shtool install -c ext/phar/phar.phar /usr/local/php/bin
 ln -s -f phar.phar /usr/local/php/bin/phar
 Installing PDO headers:           /usr/local/php/include/php/ext/pdo/
+
+[root@e8ed9b00e80c php-7.0.7]# /usr/local/php/bin/php -m
+[PHP Modules]
+bcmath
+bz2
+Core
+ctype
+curl
+date
+dom
+fileinfo
+filter
+gd
+gettext
+hash
+iconv
+json
+libxml
+mbstring
+mcrypt
+mysqli
+mysqlnd
+openssl
+pcntl
+pcre
+PDO
+pdo_mysql
+pdo_sqlite
+Phar
+posix
+readline
+Reflection
+session
+shmop
+SimpleXML
+soap
+sockets
+SPL
+sqlite3
+standard
+sysvmsg
+sysvsem
+sysvshm
+tokenizer
+xml
+xmlreader
+xmlrpc
+xmlwriter
+zip
+zlib
+
+[Zend Modules]
 ```
  
 ### 配置文件
