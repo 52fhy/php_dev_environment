@@ -239,9 +239,12 @@ opcache.enable=1
 ```
 
 **配置php-fpm.conf**
+
 ``` ini
-; 去掉里分号，方便以后重启：
+; 去掉里分号，方便以后重启。建议修改
 ; Default Value: none
+; 下面的值最终目录是/usr/local/php/var/run/php-fpm.pid
+; 开启后可以平滑重启php-fpm
 pid = run/php-fpm.pid
 
 ; 设置错误日志的路径，可以默认值
@@ -263,19 +266,21 @@ include=/usr/local/php/etc/php-fpm.d/*.conf
 ```
 
 **配置www.conf（在php-fpm.d目录下）**
+
 www.conf这是php-fpm进程服务的扩展配置文件：
+
 ``` ini
-; 设置用户和用户组，默认都是nobody
+; 设置用户和用户组，默认都是nobody。可以默认值
 user = nginx
 group = nginx
 
 ; 设置PHP监听
-; 下面是默认值，不建议使用
+; 下面是默认值，不建议使用。可以默认值
 ; listen = 127.0.0.1:9000
 ; 根据nginx.conf中的配置fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
 listen = /var/run/php-fpm/php-fpm.sock
 
-######开启慢日志
+######开启慢日志。可以默认值
 slowlog = /var/log/php-fpm/$pool-slow.log
 request_slowlog_timeout = 10s
 ```
