@@ -51,7 +51,6 @@ yum makecache
 yum install -y gcc gcc-c++ make cmake bison autoconf wget lrzsz
 yum install -y libtool libtool-ltdl-devel 
 yum install -y freetype-devel libjpeg.x86_64 libjpeg-devel libpng-devel gd-devel
-yum install -y libmcrypt-devel libmhash-devel
 yum install -y python-devel  patch  sudo 
 yum install -y openssl* openssl openssl-devel ncurses-devel
 yum install -y bzip* bzip2 unzip zlib-devel
@@ -61,13 +60,12 @@ yum install -y libcurl* curl-devel
 yum install -y readline-devel
 ```
 
-libmcrypt库
+需要编译libmcrypt、mhash、mcrypt库
 ``` shell
-wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz
-tar zxvf libmcrypt-2.5.7.tar.gz 
-cd libmcrypt-2.5.7
-./configure --prefix=/usr/local/
-make && make install
+tar zxvf /libmcrypt-2.5.8.tar.gz \
+&& cd /libmcrypt-2.5.8 && ./configure && make && make install && cd - / && rm -rf /libmcrypt* \
+&& tar zxvf /mhash-0.9.9.9.tar.gz && cd mhash-0.9.9.9 && ./configure && make && make install && cd - / && rm -rf /mhash* \
+&& tar zxvf /mcrypt-2.6.8.tar.gz && cd mcrypt-2.6.8 && LD_LIBRARY_PATH=/usr/local/lib ./configure && make && make install && cd - / && rm -rf /mcrypt*
 ```
 
 ### 开始安装
@@ -82,10 +80,15 @@ wget http://cn2.php.net/distributions/php-7.0.7.tar.bz2
 tar jxvf php-7.0.7.tar.bz2 
 cd php-7.0.7
 
-$ ./configure --prefix=/www/server/php --with-config-file-scan-dir=/www/server/php/etc/ --enable-inline-optimization --enable-opcache --enable-session --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-sqlite --with-sqlite3 --with-gettext --enable-mbregex --enable-mbstring --enable-xml --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-xmlrpc --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-curlwrappers --with-zlib --enable-zip --with-bz2 --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-readline
+$ ./configure --prefix=/www/server/php --with-config-file-scan-dir=/www/server/php/etc/ --enable-inline-optimization --enable-opcache --enable-session --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-sqlite --with-sqlite3 --with-gettext --enable-mbregex --enable-mbstring --enable-xml --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-xmlrpc --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-curlwrappers --with-zlib --enable-zip --with-bz2 --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-readline
  
 $ make
 $ make install 
+```
+
+可选项：
+```
+--with-fpm-user=www --with-fpm-group=www
 ```
 
 这里面开启了很多扩展。如果这时候忘了开启，以后还能加上吗？答案是可以的。以后只需要进入源码的`ext`目录，例如忘了`pdo_mysql`，进入`ext/pdo_mysql`，使用phpize工具，像安装普通扩展一样即可生成pdo_mysql.so。
