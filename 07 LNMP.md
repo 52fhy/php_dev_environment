@@ -102,7 +102,7 @@ safe_mode = off
 ```
 php7编译不用加这个配置。
 
-编译比较耗内存。等待半小时左右，编译完成：
+编译比较耗内存和CPU。等待半小时左右，编译完成：
 ``` shell
 Build complete.
 Don't forget to run 'make test'.
@@ -192,17 +192,19 @@ zlib
 ```
  
 ### 配置文件
-需要从安装包里复制php.ini到安装目录：
+需要从安装包里复制php.ini、php-fpm.conf到安装目录：
 ``` shell
 $ cp php-7.0.7/php.ini* /usr/local/php/etc/
-$ cd /usr/local/php/etc/
-$ ls
-```
-pear.conf  php-fpm.conf.default  php.ini-development  php.ini-production
 
-``` shell
+$ cd /usr/local/php/etc/
+
 $ cp php.ini-production php.ini
 $ cp php-fpm.conf.default  php-fpm.conf
+
+$ cp php-fpm.d/www.conf.default php-fpm.d/www.conf
+
+$ ls
+pear.conf  php-fpm.conf.default  php.ini-development  php.ini-production
 ```
 
 编辑php-fpm.conf，去掉里面那个 `pid = run/php-fpm.pid` 前面的分号。方便以后重启。
@@ -220,6 +222,11 @@ ln -sf /usr/local/php/bin/php /usr/bin/
 ln -sf /usr/local/php/bin/phpize /usr/bin/
 ln -sf /usr/local/php/bin/php-config /usr/bin/
 ln -sf /usr/local/php/bin/php-cig /usr/bin/
+```
+
+或者将php编译生成的`bin`目录添加到当前Linux系统的环境变量中:
+``` shell 
+echo -e '\nexport PATH=/usr/local/php/bin:/usr/local/php/sbin:$PATH\n' >> /etc/profile && source /etc/profile
 ```
 
 ### 启动php-fpm
