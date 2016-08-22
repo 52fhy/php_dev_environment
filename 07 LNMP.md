@@ -361,8 +361,8 @@ yum install pcre-devel
 # 需要ssl的支持，如果不需要ssl支持，请跳过这一步
 # yum install openssl*
 
-# gzip 类库安装
-yum install zlib zlib-devel
+# gzip 类库安装，按需安装
+# yum install zlib zlib-devel
 ```
 
 配置编译参数
@@ -377,6 +377,30 @@ $ ./configure \
 	--with-http_sub_module \
 	--with-http_gzip_static_module \
 	--with-pcre
+```
+
+配置ok：
+``` shell
+Configuration summary
+  + using system PCRE library
+  + using system OpenSSL library
+  + md5: using OpenSSL library
+  + sha1: using OpenSSL library
+  + using system zlib library
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx modules path: "/usr/local/nginx/modules"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
 ```
 
 编译安装nginx
