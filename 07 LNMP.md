@@ -207,7 +207,7 @@ $ ls
 pear.conf  php-fpm.conf.default  php.ini-development  php.ini-production
 ```
 
-配置php.ini
+**配置php.ini**
 ``` ini
 # 不显示错误，默认
 display_errors = Off
@@ -238,7 +238,47 @@ opcache.enable=1
 
 ```
 
-编辑php-fpm.conf，去掉里面那个 `pid = run/php-fpm.pid` 前面的分号。方便以后重启。
+**配置php-fpm.conf**
+``` conf
+; 去掉里分号，方便以后重启：
+; Default Value: none
+pid = run/php-fpm.pid
+
+; 设置错误日志的路径，可以默认值
+; Note: the default prefix is /usr/local/php/var
+; Default Value: log/php-fpm.log, 即/usr/local/php/var/log/php-fpm.log
+error_log = /var/log/php-fpm/error.log
+
+; Log等级，可以默认值
+; Possible Values: alert, error, warning, notice, debug
+; Default Value: notice
+log_level = notice
+
+; 后台运行，默认yes，可以默认值
+; Default Value: yes
+;daemonize = yes
+
+; 引入www.conf文件中的配置，可以默认值
+include=/usr/local/php/etc/php-fpm.d/*.conf
+```
+
+**配置www.conf（在php-fpm.d目录下）**
+www.conf这是php-fpm进程服务的扩展配置文件：
+``` conf
+; 设置用户和用户组，默认都是nobody
+user = nginx
+group = nginx
+
+; 设置PHP监听
+; 下面是默认值，不建议使用
+; listen = 127.0.0.1:9000
+; 根据nginx.conf中的配置fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+listen = /var/run/php-fpm/php-fpm.sock
+
+######开启慢日志
+slowlog = /var/log/php-fpm/$pool-slow.log
+request_slowlog_timeout = 10s
+```
 
 保存配置文件后，检验配置是否正确的方法为:
 ``` shell
