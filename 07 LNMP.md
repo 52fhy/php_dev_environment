@@ -7,7 +7,7 @@
 
 ---
 
-本文以centos6.8为例。
+本文以centos6为例。
 
 ## 安装PHP
 ### 下载
@@ -194,7 +194,7 @@ zlib
 ### 配置文件
 需要从安装包里复制php.ini到安装目录：
 ``` shell
-$ cp php-5.6.22/php.ini* /usr/local/php/etc/
+$ cp php-7.0.7/php.ini* /usr/local/php/etc/
 $ cd /usr/local/php/etc/
 $ ls
 ```
