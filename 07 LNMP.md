@@ -239,7 +239,7 @@ opcache.enable=1
 ```
 
 **配置php-fpm.conf**
-``` conf
+``` ini
 ; 去掉里分号，方便以后重启：
 ; Default Value: none
 pid = run/php-fpm.pid
@@ -264,7 +264,7 @@ include=/usr/local/php/etc/php-fpm.d/*.conf
 
 **配置www.conf（在php-fpm.d目录下）**
 www.conf这是php-fpm进程服务的扩展配置文件：
-``` conf
+``` ini
 ; 设置用户和用户组，默认都是nobody
 user = nginx
 group = nginx
@@ -284,7 +284,7 @@ request_slowlog_timeout = 10s
 ``` shell
 /usr/local/php/sbin/php-fpm -t
 ```
-如果出现诸如 `test is successful` 字样，说明配置没有问题。
+如果出现诸如 `test is successful` 字样，说明配置没有问题。另外该命令也可以让我们知道php-fpm的配置文件在哪。
 
 建立软连接：
 ``` shell
@@ -304,7 +304,7 @@ echo -e '\nexport PATH=/usr/local/php/bin:/usr/local/php/sbin:$PATH\n' >> /etc/p
 ``` shell
  /usr/local/php/sbin/php-fpm 
 ```
-如果提示没有www用户，则新增：
+如果提示没有www用户（www.conf里填写了www而不是nobody），则新增：
 ``` shell
 useradd www
 chown -R www:www /www
@@ -312,7 +312,7 @@ chown -R www:www /www
 
 检测是否启动:
 ``` shell
-ps aux |grep php-fpm
+ps aux |grep php-fpm # 另外该命令也可以让我们知道fpm的配置文件在哪。
 netstat -ant |grep 9000
 ```
 
