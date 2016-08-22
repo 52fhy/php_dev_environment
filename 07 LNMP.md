@@ -101,6 +101,43 @@ $ make install
 safe_mode = off
 ```
 php7编译不用加这个配置。
+
+编译比较耗内存。等待半小时左右，编译完成：
+``` shell
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/
+Installing PHP CLI binary:        /usr/local/php/bin/
+Installing PHP CLI man page:      /usr/local/php/php/man/man1/
+Installing PHP FPM binary:        /usr/local/php/sbin/
+Installing PHP FPM config:        /usr/local/php/etc/
+Installing PHP FPM man page:      /usr/local/php/php/man/man8/
+Installing PHP FPM status page:   /usr/local/php/php/php/fpm/
+Installing phpdbg binary:         /usr/local/php/bin/
+Installing phpdbg man page:       /usr/local/php/php/man/man1/
+Installing PHP CGI binary:        /usr/local/php/bin/
+Installing PHP CGI man page:      /usr/local/php/php/man/man1/
+Installing build environment:     /usr/local/php/lib/php/build/
+Installing header files:           /usr/local/php/include/php/
+Installing helper programs:       /usr/local/php/bin/
+  program: phpize
+  program: php-config
+Installing man pages:             /usr/local/php/php/man/man1/
+  page: phpize.1
+  page: php-config.1
+Installing PEAR environment:      /usr/local/php/lib/php/
+[PEAR] Archive_Tar    - installed: 1.4.0
+[PEAR] Console_Getopt - installed: 1.4.1
+[PEAR] Structures_Graph- installed: 1.1.1
+[PEAR] XML_Util       - installed: 1.3.0
+[PEAR] PEAR           - installed: 1.10.1
+Wrote PEAR system config file at: /usr/local/php/etc/pear.conf
+You may want to add: /usr/local/php/lib/php to your php.ini include_path
+/php-7.0.7/build/shtool install -c ext/phar/phar.phar /usr/local/php/bin
+ln -s -f phar.phar /usr/local/php/bin/phar
+Installing PDO headers:           /usr/local/php/include/php/ext/pdo/
+```
  
 ### 配置文件
 需要从安装包里复制php.ini到安装目录：
