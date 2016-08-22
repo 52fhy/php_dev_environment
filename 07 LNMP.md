@@ -89,6 +89,15 @@ $ make install
 ```
 
 这里面开启了很多扩展。如果这时候忘了开启，以后还能加上吗？答案是可以的。以后只需要进入源码的`ext`目录，例如忘了`pdo_mysql`，进入`ext/pdo_mysql`，使用phpize工具，像安装普通扩展一样即可生成pdo_mysql.so。
+
+关于：`--enable-safe-mode`
+开启的话php可以执行一下系统函数，建议关闭（可搜索受此函数影响的php函数）
+```
+#如果只需要配置某一个目录可以执行则 设置为on并指定 safe_mode_exec_dir=string目录来执行系统函数。
+#本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
+safe_mode = off
+```
+php7编译不用加这个配置。
  
 ### 配置文件
 需要从安装包里复制php.ini到安装目录：
