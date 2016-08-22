@@ -208,7 +208,7 @@ pear.conf  php-fpm.conf.default  php.ini-development  php.ini-production
 ```
 
 配置php.ini
-```
+``` ini
 # 不显示错误，默认
 display_errors = Off
 
@@ -220,6 +220,12 @@ default_charset = "UTF-8"
 
 # 文件上传大小，默认 
 upload_max_filesize = 2M
+
+# 设置PHP的扩展库路径,，默认被注释了。
+extension_dir = "/usr/local/php7/lib/php/extensions/no-debug-non-zts-20151012/"
+# 如果不设置extension_dir，也可以直接写绝对位置：
+# extension=/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/redis.so
+
 
 # 设置PHP的时区
 date.timezone = PRC
