@@ -207,6 +207,31 @@ $ ls
 pear.conf  php-fpm.conf.default  php.ini-development  php.ini-production
 ```
 
+配置php.ini
+```
+# 不显示错误，默认
+display_errors = Off
+
+# 在关闭display_errors后开启PHP错误日志（路径在php-fpm.conf中配置），默认
+log_errors = On
+
+# 字符集，默认
+default_charset = "UTF-8"
+
+# 文件上传大小，默认 
+upload_max_filesize = 2M
+
+# 设置PHP的时区
+date.timezone = PRC
+
+# 开启opcache，默认是0
+[opcache]
+; Determines if Zend OPCache is enabled
+opcache.enable=1
+
+
+```
+
 编辑php-fpm.conf，去掉里面那个 `pid = run/php-fpm.pid` 前面的分号。方便以后重启。
 
 保存配置文件后，检验配置是否正确的方法为:
