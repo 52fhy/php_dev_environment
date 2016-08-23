@@ -60,7 +60,7 @@ yum install -y libcurl* curl-devel
 yum install -y readline-devel
 ```
 
-需要编译libmcrypt、mhash、mcrypt库
+需要编译libmcrypt、mhash、mcrypt库（下载见文末附件）
 ``` shell
 tar zxvf /libmcrypt-2.5.8.tar.gz \
 && cd /libmcrypt-2.5.8 && ./configure && make && make install && cd - / && rm -rf /libmcrypt* \
@@ -648,3 +648,6 @@ make && make install
 1、linux下为已经编译好的php环境添加mysql扩展
 https://ask.hellobi.com/blog/liangyong/69
  
+## 附件
+相关源码包
+链接: http://pan.baidu.com/s/1kUQTlFD 密码: ajzk
