@@ -330,7 +330,7 @@ php-fpm操作汇总：
 ``` shell
 /usr/local/php/sbin/php-fpm 		# php-fpm启动
 kill -INT `cat /usr/local/php/var/run/php-fpm.pid` 		# php-fpm关闭
-kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpm重启
+kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid` 		#php-fpm平滑重启
 ```
 
 重启方法二：
@@ -643,6 +643,26 @@ make && make install
 
 ### 安装memcache
 
+## 信号管理
+不重载配置启动新/旧工作进程
+```
+kill -HUP 旧/新版主进程号
+```
+
+从容关闭旧/新进程
+```
+kill -QUIT 旧/新主进程号
+```
+
+如果此时报错，提示还有进程没有结束就用下面命令先关闭旧/新工作进程，再关闭主进程号：
+```
+kill -TERM 旧/新工作进程号
+```
+
+升级、添加或删除模块时，我们需要停掉服务器
+```
+kill -USR2 旧版程序的主进程号或进程文件名
+```
 
 ## 更多资料
 1、linux下为已经编译好的php环境添加mysql扩展
