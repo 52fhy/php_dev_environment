@@ -206,9 +206,23 @@ LoadModule php5_module D:/phpsetup/php/php-5.6.22-Win32-VC11-x86/php5apache2_4.d
 可以开启虚拟主机配置文件：
 ```
 Include conf/extra/httpd-vhosts.conf
-Include conf/extra/httpd-alias.conf
 ```
 默认httpd-vhosts.conf文件里面写的是供参考的，一但启用该文件，请正确配置，否则无法启用apache服务。
+
+虚拟主机示例：
+``` ini
+<VirtualHost *:80>
+    DocumentRoot "D:/www/app/laravel-5-blog/public/"
+    ServerName laravel-5-blog.fhy.com
+	DirectoryIndex index.php
+	<Directory "D:/www/app/laravel-5-blog/">
+		AllowOverride All
+	</Directory>
+    ErrorLog "logs/laravel-5-blog.fhy.com-error.log"
+    CustomLog "logs/laravel-5-blog.fhy.com-access.log" common
+</VirtualHost>
+```
+其中DocumentRoot设置项目所在路径，ServerName设置主机名，DirectoryIndex设置入口文件；Directory里AllowOverride设置开启.htaccess功能。
 
 可以开启主机别名配置文件：
 ```
