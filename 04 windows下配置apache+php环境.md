@@ -166,14 +166,14 @@ ServerRoot "D:/phpsetup/Apache24"
 
 修改主机名：
 ```
-DocumentRoot "D:/phpsetup/www"
-
-<Directory "D:/phpsetup/www">
+ServerName localhost:80
 ```
 
 修改www目录：
 ```
-ServerRoot "D:/phpsetup/Apache24"
+DocumentRoot "D:/phpsetup/www"
+
+<Directory "D:/phpsetup/www">
 ```
 
 修改默认索引以支持PHP:
@@ -201,7 +201,20 @@ LoadModule php5_module D:/phpsetup/php/php-5.6.22-Win32-VC11-x86/php5apache2_4.d
     AddType application/x-httpd-php-source .phps
 </IfModule>
 ```
-注意：如果是PHP5.4版本，只有`php5apache2_2.dll`，需要Apache2.2。所以，一定要确认PHP安装包里是否有`php5apache2_4.dll`文件。
+
+如果是php7，相应更改即可:
+```
+#php7
+LoadModule php7_module D:/phpsetup/php/php-7.0.13-Win32-VC14-x64/php7apache2_4.dll
+<IfModule php7_module> 
+    PHPIniDir "D:/phpsetup/php/php-7.0.13-Win32-VC14-x64/" 
+    AddType application/x-httpd-php .php
+    AddType application/x-httpd-php-source .phps
+</IfModule>
+```
+
+注意：如果是PHP5.4版本，php目录里只有`php5apache2_2.dll`，需要和Apache2.2搭配。
+所以，安装php5.6一定要确认PHP安装包里是否有`php5apache2_4.dll`文件。
 
 可以开启虚拟主机配置文件：
 ```
