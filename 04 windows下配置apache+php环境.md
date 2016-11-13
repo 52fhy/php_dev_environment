@@ -136,8 +136,11 @@ extension=php_redis.dll
 区分ts,x86。
 
 下载地址
-http://pecl.php.net/package/redis/
-http://pecl.php.net/package/memcache
+http://pecl.php.net/package/redis/  
+http://pecl.php.net/package/memcache  
+http://pecl.php.net/package/SeasLog  
+http://pecl.php.net/package/xdebug  
+http://pecl.php.net/package/yar  
 
 
 ## apache的安装与配置
