@@ -5,6 +5,50 @@
 
 ---
 
+## 版本选择
+
+Linux下安装推荐编译安装，不用考虑TS、NTS区别。版本建议64位（看机器是否支持）。  
+PHP7: http://php.net/get/php-7.0.13.tar.bz2/from/a/mirror  
+php5: http://php.net/get/php-5.6.28.tar.bz2/from/a/mirror  
+Nginx: http://nginx.org/download/nginx-1.10.2.tar.gz  
+
+
+Windows下安装时注意：  
+
+需要先安装VC11或VC14:  
+	1)VC11: https://www.microsoft.com/en-us/download/details.aspx?id=30679  
+	2)VC14: https://www.microsoft.com/en-us/download/details.aspx?id=48145  
+	
+1、如果使用Apache，请使用TS版本PHP：  
+PHP7:   
+	1)VC14_x86: http://windows.php.net/downloads/releases/php-7.0.13-Win32-VC14-x86.zip  
+	2)VC14_x64：http://windows.php.net/downloads/releases/php-7.0.13-Win32-VC14-x86.zip  
+	
+PHP5:  
+	1)VC11_x86: http://windows.php.net/downloads/releases/php-5.6.28-Win32-VC11-x86.zip  
+	1)VC11_x64: http://windows.php.net/downloads/releases/php-5.6.28-Win32-VC11-x64.zip  
+
+Apache:  
+    1、VC14_x64: https://www.apachelounge.com/download/VC14/binaries/httpd-2.4.23-win64-VC14.zip  
+	2、VC14_x86: https://www.apachelounge.com/download/VC14/binaries/httpd-2.4.23-win32-VC14.zip  
+	
+	3、VC11_x64:https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.23-win64-VC11.zip  
+	4、VC11_x86:https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.23-win32-VC11.zip  
+	
+搭配原则是：VC14+PHP7_TS+Apache_VC14 、VC11+PHP5_TS+Apache_VC11。  
+
+2、如果使用Nginx，请使用NTS版本PHP：  
+	
+PHP7:   
+	1)VC14_x86: http://windows.php.net/downloads/releases/php-7.0.13-nts-Win32-VC14-x86.zip  
+	2)VC14_x64：http://windows.php.net/downloads/releases/php-7.0.13-nts-Win32-VC14-x64.zip  
+	
+PHP5:  
+	1)VC11_x86: http://windows.php.net/downloads/releases/php-5.6.28-nts-Win32-VC11-x86.zip  
+	1)VC11_x64: http://windows.php.net/downloads/releases/php-5.6.28-nts-Win32-VC11-x64.zip  
+	
+Nginx: http://nginx.org/download/nginx-1.10.2.zip  
+
 ## PHP安装
 
 约定：
