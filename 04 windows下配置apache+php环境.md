@@ -7,6 +7,8 @@
 
 ## PHP安装
 
+由于windows下php扩展5.6的多余7.0，故以php5.6为开发环境。如果对扩展要求不高，可以使用php7，安装过程类似。  
+
 约定：
 环境安装目录：
 ```
@@ -114,7 +116,13 @@ extension=php_xsl.dll
 date.timezone=PRC
 ```
 
-- 开启自定义扩展
+- 设置ssl(可选)
+```
+openssl.cafile= cacert.pem
+```
+注意是绝对路径。
+
+- 添加自定义扩展
 ```
 [memcache]
 extension=php_memcache.dll
@@ -128,7 +136,7 @@ extension=php_redis.dll
 区分ts,x86。
 
 下载地址
-http://pecl.php.net/package/redis/2.2.7/windows
+http://pecl.php.net/package/redis/
 http://pecl.php.net/package/memcache
 
 
