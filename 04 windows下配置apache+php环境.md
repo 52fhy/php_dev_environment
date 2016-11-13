@@ -242,6 +242,8 @@ Include conf/extra/httpd-vhosts.conf
 	<Directory "D:/www/app/laravel-5-blog/">
 		AllowOverride All
 	</Directory>
+```
+
 ## PHP安装
 
 由于windows下php扩展5.6的多余7.0，故以php5.6为开发环境。如果对扩展要求不高，可以使用php7，安装过程类似。  
@@ -300,6 +302,7 @@ VC14 x86 or x64 ：http://www.microsoft.com/en-us/download/details.aspx?id=48145
 ```
 extension_dir = "D:\phpsetup\php\php-5.6.22-Win32-VC11-x86\ext"
 ```
+
 提示：与apache搭配使用需要写绝对位置。否则扩展加载不了。
 
 - 开启扩展
