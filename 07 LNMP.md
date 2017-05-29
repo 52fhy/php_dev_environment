@@ -643,6 +643,54 @@ make && make install
 
 ### 安装memcache
 
+## 使用yum安装php
+
+如果只是想快速搭建开发环境，可以使用yum进行安装：
+```
+yum install php php-gd php-fpm php-mbstring php-mcrypt php-mysql php-sqlite3 php-pdo php-memcache php-devel
+```
+使用`yum search php`可以查询到可以安装哪些php相关的扩展。
+
+需要注意的是，使用yum安装的php,其配置文件位于：
+```
+/etc/php.ini
+/etc/php-fpm.conf
+/etc/php-fpm.d/www.conf
+
+/etc/php.d/mysqli.ini
+/etc/php.d/pdo.ini
+```
+ubuntu与centos不一样，会分开存放php.ini到`/etc/php7/cli/php.ini`和`/etc/php7/fpm/php.ini`里。这个需要注意。
+
+yum无法安装的扩展，可以使用pecl安装。由于pecl是需要编译的，所以需要先安装编译器：
+```
+yum install -y gcc gcc-c++ make cmake bison autoconf wget lrzsz
+yum install -y bzip* bzip2 unzip zlib-devel
+yum install -y libcurl* curl-devel
+```
+
+然后：
+```
+pecl install swoole
+pecl install redis
+```
+
+pecl安装扩展完成后会提示添加so文件到php.ini。示例：
+```
+Build process completed successfully
+Installing '/usr/lib64/php/modules/swoole.so'
+install ok: channel://pecl.php.net/swoole-1.9.11
+configuration option "php_ini" is not set to php.ini location
+You should add "extension=swoole.so" to php.ini
+```
+添加示例：
+```
+[swoole]
+extension = /usr/lib64/php/modules/swoole.so
+```
+
+使用`php -m`可以查看安装的扩展。
+
 ## 信号管理
 不重载配置启动新/旧工作进程
 ```
