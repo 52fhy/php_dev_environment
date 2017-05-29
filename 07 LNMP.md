@@ -664,9 +664,7 @@ ubuntu与centos不一样，会分开存放php.ini到`/etc/php7/cli/php.ini`和`/
 
 yum无法安装的扩展，可以使用pecl安装。由于pecl是需要编译的，所以需要先安装编译器：
 ```
-yum install -y gcc gcc-c++ make cmake bison autoconf wget lrzsz
-yum install -y bzip* bzip2 unzip zlib-devel
-yum install -y libcurl* curl-devel
+yum install -y gcc gcc-c++ make cmake bison autoconf
 ```
 
 然后：
