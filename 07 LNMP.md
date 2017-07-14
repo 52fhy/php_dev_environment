@@ -849,7 +849,7 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.16.%' IDENTIFIED BY 'password'
 然后保存，并关闭该文件，在终端内运行下面的命令，刷新防火墙配置：
 ```
 service iptables restart
- ```
+```
 OK，一切配置完毕，你可以访问你的MySQL了~
 
 注意：
